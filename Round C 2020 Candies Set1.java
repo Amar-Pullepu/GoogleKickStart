@@ -56,6 +56,7 @@ class Temp implements Runnable{
         return ans;
     }
     public static void solve(int caseNo) throws IOException{
+        //Step 0: Take Inputs
         nTemps = br.readLine().split(" ");
         int n = Integer.parseInt(nTemps[0]), q = Integer.parseInt(nTemps[1]);
         nTemps = br.readLine().split(" ");
@@ -67,6 +68,7 @@ class Temp implements Runnable{
         while(q-- > 0){
             nTemps = br.readLine().split(" ");
             if(nTemps[0].equals("Q")){
+                //Add all the queries to to HashMap and calculate the Sum before the values get updated
                 queried = true;
                 int s = Integer.parseInt(nTemps[1])-1, e = Integer.parseInt(nTemps[2])-1;
                 if(!queryMap.containsKey(s))    queryMap.put(s, new ArrayList<>());
@@ -74,6 +76,7 @@ class Temp implements Runnable{
             }
             else{
                 if(queried){
+                    //Calculate the sum before the value gets updated
                     long curr = calculate(nInputs);
                     count+=curr;
                     queried = false;    
