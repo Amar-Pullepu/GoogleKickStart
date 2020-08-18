@@ -1,0 +1,40 @@
+import java.util.*;
+import java.io.*;
+import java.math.*;
+import static java.lang.System.*;
+
+
+class Temp_02{
+    static StringBuilder ans;
+    public static void solve(int caseNo) throws IOException{
+        int n = Integer.parseInt(br.readLine());
+        String[] nTemps = br.readLine().split(" ");
+        long[] nInputs = new long[n];
+        for(int itr = 0; itr < n; itr++)    nInputs[itr] = Integer.parseInt(nTemps[itr]);
+        long count = 0;
+        int increase = 0, decrease = 0;
+        for(int itr = 1; itr < n; itr++){
+            if(nInputs[itr-1] < nInputs[itr]){
+                decrease = 0;   increase++;
+            } else if(nInputs[itr-1] > nInputs[itr]){
+                increase = 0; decrease++;
+            }
+            if(decrease == 4 || increase == 4 ){
+                increase = 0;
+                decrease = 0;
+                count++;
+            } 
+        }
+        ans.append("Case #"+caseNo+": "+String.valueOf(count)+"\n");
+    }
+    final static BufferedReader br = new BufferedReader(new InputStreamReader(in));
+    public static void main(String...args) throws IOException{
+        ans = new StringBuilder();
+        int t = Integer.parseInt(br.readLine()), caseNo = 0;
+        while(t-- > 0){
+            solve(++caseNo);    
+        }
+        out.print(ans);
+        br.close();
+    }
+}
